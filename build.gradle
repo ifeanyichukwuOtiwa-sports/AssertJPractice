@@ -9,9 +9,13 @@ repositories {
     mavenCentral()
 }
 
+def assert_j_version = '3.23.1'
+def junit_version = '5.8.2'
+
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation('org.junit.jupiter:junit-jupiter-api:${junit_version}')
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:${junit_version}')
+    testImplementation('org.assertj:assertj-core:${assert_j_version}')
 }
 
 test {
