@@ -1,23 +1,50 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.assertj:assertj-core:3.23.1")
+        classpath("org.junit.jupiter:junit-jupiter-api:5.8.2")
+        classpath("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+        classpath("org.projectlombok:lombok:1.18.24")
+    }
+}
+
 plugins {
     id 'java'
 }
 
+
+
 group 'io.codewithgx'
 version '1.0-SNAPSHOT'
 
+sourceCompatibility = 17
+targetCompatibility = 17
+
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
-def assert_j_version = '3.23.1'
-def junit_version = '5.8.2'
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
 
 dependencies {
-    testImplementation('org.junit.jupiter:junit-jupiter-api:${junit_version}')
-    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:${junit_version}')
-    testImplementation('org.assertj:assertj-core:${assert_j_version}')
+
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.8.2')
+    testImplementation('org.junit.jupiter:junit-jupiter-engine:5.8.2')
+    testImplementation('org.assertj:assertj-core:3.23.1')
+    annotationProcessor('org.projectlombok:lombok:1.18.24')
+
+    testImplementation('org.projectlombok:lombok:1.18.24')
 }
 
-test {
+tasks.named('test') {
     useJUnitPlatform()
 }
